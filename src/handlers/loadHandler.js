@@ -1,13 +1,18 @@
+import createButton from '../components/createButton.js';
+import createCard from '../components/createCard.js';
 import data from '../data.js';
 import dom from '../dom.js';
-import sortFlights from '../utils/sortFlights.js';
-import createFlight from '../components/createFlight.js';
 
 const loadHandler = () => {
-    const organizedFlights = sortFlights(data);
-    organizedFlights.forEach((flight) => {
-        const flightDom = createFlight(flight);
-        dom.parent.appendChild(flightDom);
+    data.buttons.forEach((btnData) => {
+        const { id, text } = btnData;
+        const button = createButton('button', 'btn', id, text);
+        dom.btnContainer.append(button);
+    });
+
+    data.menu.forEach((item) => {
+        const createDom = createCard(item);
+        dom.cardContainer.append(createDom);
     });
 };
 
